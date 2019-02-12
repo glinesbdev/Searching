@@ -13,8 +13,8 @@ namespace Game
         [Tooltip("Enable this is an interactable object can be interacted with mulitple times.")]
         [SerializeField] bool reInteractable;
         public bool isDialog;
-        public Image dialogBox;
-        public Text dialogTextObject;
+        [HideInInspector] public GameObject dialogBox;
+        [HideInInspector] public Text dialogTextObject;
         public string dialogText;
 
         [HideInInspector] public bool canInteract;
@@ -74,6 +74,12 @@ namespace Game
         void Awake()
         {
             canInteract = true;
+            dialogBox = GameObject.FindWithTag("Dialog Box");
+            dialogTextObject = dialogBox.GetComponentInChildren<Text>();
+        }
+
+        void Start()
+        {
             dialogBox.gameObject.SetActive(false);
         }
 
